@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Salário</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* Header */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* Nav */
+        nav {
+            background-color: #34495e;
+            color: white;
+            padding: 0.5rem 2rem;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Layout Principal */
+        .main-layout {
+            display: flex;
+            flex: 1; /* Ocupa o restante da tela */
+        }
+
+        /* Sidebar */
+        aside {
+            width: 250px;
+            background-color: #f4f4f4;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+        }
+
+        /* Container em branco */
+        .container {
+            flex: 1;
+            padding: 40px;
+            background-color: #fff;
+        }
+
+        .container-placeholder {
+            border: 2px dashed #ccc;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Sistema de RH - Gestão de Salários
+    </header>
+
+    <nav>
+        <a href="#">Início</a>
+        <a href="#">Relatórios</a>
+        <a href="#">Configurações</a>
+        <a href="#">Sair</a>
+    </nav>
+
+    <div class="main-layout">
+        <aside>
+            <h3>Menu Lateral</h3>
+            <br>
+            <ul>
+                <li style="list-style: none; margin-bottom: 10px;"><a href="#" style="color: #333; text-decoration: none;">👤 Funcionários</a></li>
+                <li style="list-style: none; margin-bottom: 10px;"><a href="#" style="color: #333; text-decoration: none;">💰 Folha de Pagamento</a></li>
+                <li style="list-style: none; margin-bottom: 10px;"><a href="#" style="color: #333; text-decoration: none;">📊 Estatísticas</a></li>
+            </ul>
+        </aside>
+
+        <main class="container">
+            <div class="container-placeholder">
+                <div>
+                    <label for="salario">Salário Mensal:</label>
+                    <input type="number" name="salario" id="salario">
+                    <label for="dia">Horas Necessárias:</label>
+                    <input type="number" name="horas" id="hrsN">
+                    <label for="horas">Horas Trabalhadas:</label>
+                    <input type="number" name="horasT" id="hrsT">
+                    <button onclick="CalculoSalario()" id="salarioPorHrs">Calcular</button>
+                    <table border="1">
+                        <tr>
+                            <th>Resultado do Salário:</th>
+                        </tr>
+                        <tr>
+                            <td id="resultado">-----</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+<script>
+    function CalculoSalario(){
+    let valorMensal = document.getElementById("salario").value;
+    let horasT = document.getElementById("hrsT").value;
+    let horasN = document.getElementById("hrsN").value;
+    
+    let salarioPorDia = valorMensal * horasT
+    salarioPorHora = salarioPorDia/horasN;
+
+    document.getElementById("resultado").innerText = "Salário por Hora: R$ " + salarioPorHora.toFixed(2);
+}
+</script>
+</html>
